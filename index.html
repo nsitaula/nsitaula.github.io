@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <style>
+    body {
+        font-family: Cambria, Georgia, serif;
+        margin: 0;
+        padding: 40px 20px;
+        background-color: #f1f8f5;
+        color: #2d3732;
+    }
+
+    .portfolio-container {
+        max-width: 1050px;
+        margin: 0 auto;
+        /*background: #ffffff;*/
+        background: #FAFDFB; /* <--- LIGHTEST MINT GREEN POSSIBLE (was #ffffff) */
+        padding: 50px;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(46, 117, 89, 0.08);
+    }
+
+    header {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    header h1 {
+        margin: 0 0 10px 0;
+        color: #1b382b;
+        font-size: 2.8rem;
+    }
+
+    header p {
+        margin: 0;
+        color: #556b60;
+        font-size: 1.2rem;
+    }
+
+    /* Core Header alignment */
+    .main-header {
+        margin-bottom: 45px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    /* Visiting Card Box Container */
+    .visiting-card {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        background-color: #FAFDFB;
+        border: 1px solid #8A9A5B;
+        border-radius: 12px;
+        padding: 10px;
+        width: 100%;
+        max-width: 1050px;
+        gap: 35px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+    }
+
+    .card-left {
+        flex-shrink: 0;
+    }
+
+    .profile-img {
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid #ffffff; /* Colorblind friendly sage accent */
+        display: block;
+    }
+
+    .card-right {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .card-right h1 {
+        margin: 0 0 6px 0;
+        color: #181A18;
+        font-size: 2.3rem;
+        font-weight: bold; /* Bold name */
+    }
+
+    .professional-title {
+        margin: 0 0 18px 0;
+        color: #A9A9A9;
+        font-size: 1.15rem;
+        font-weight: 600;
+    }
+
+    .tab-navigation {
+        display: flex;
+        border-bottom: 2px solid #e1ebe6;
+        margin-bottom: 35px;
+        overflow-x: auto;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    .tab-navigation::-webkit-scrollbar {
+        display: none;
+    }
+
+    .tab-button {
+        font-family: Cambria, Georgia, serif;
+        padding: 12px 28px;
+        border: none;
+        background: none;
+        cursor: pointer;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #70857a;
+        transition: all 0.2s ease;
+        white-space: nowrap;
+    }
+
+    /* Adds a sleek vertical separator line after each tab button */
+    .tab-navigation .tab-button:not(:last-child)::after {
+        content: "";
+        display: inline-block;
+        position: absolute;
+        right: -10px; /* Puts the line perfectly centered in the gap */
+        top: 25%;
+        width: 2px; /* Thickness of the line */
+        height: 50%; /* Height of the line */
+        background-color: #bcd6cb; /* Soft grey-green line color */
+        pointer-events: none; /* Make sure it doesn't block mouse clicks */
+    }
+
+    /* Prepares the button block to hold the separator line in place */
+    .tab-navigation .tab-button {
+        position: relative;
+    }
+
+    .tab-button:hover {
+        color: #2e7559;
+        background-color: #f4faf7;
+        border-radius: 6px 6px 0 0;
+    }
+
+    .tab-button.active {
+        color: #2e7559;
+        border-bottom: 3px solid #2e7559;
+        margin-bottom: -2px;
+    }
+
+    .tab-content {
+        display: none;
+        font-size: 1.15rem;
+    }
+
+    .green-bar-title {
+        background-color: #4A7C64;
+        color: #ffffff;
+        padding: 12px 20px;
+        margin-top: 35px;
+        margin-bottom: 20px;
+        border-radius: 6px;
+        font-size: 1.25rem;
+        font-weight: normal;
+    }
+
+    .tab-content .green-bar-title:first-child {
+        margin-top: 0;
+    }
+
+    ul {
+        list-style-type: square;
+        padding-left: 25px;
+        margin-top: 10px;
+    }
+
+    li {
+        margin-bottom: 8px;
+        line-height: 1.6;
+    }
+
+    .bio-layout {
+        display: flex;
+        align-items: flex-start;
+        gap: 40px;
+        margin-bottom: 20px;
+    }
+
+    .avatar-column {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex-shrink: 0;
+    }
+
+    /* New top profile elements centering layout styling rules */
+    .top-profile-area {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        width: 100%;
+    }
+
+    .profile-img {
+        width: 170px;
+        height: 170px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid #ffffff;
+        box-shadow: 0 4px 10px rgba(46, 117, 89, 0.15);
+        margin-bottom: 15px;
+    }
+
+    .social-links {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        width: 100%;
+    }
+
+    .social-links a {
+        text-align: center;
+        text-decoration: none;
+        color: #2e7559;
+        font-size: 0.95rem;
+        font-weight: bold;
+        padding: 6px 12px;
+        background-color: #f4faf7;
+        border: 1px solid #d2e3dc;
+        border-radius: 4px;
+        transition: all 0.2s ease;
+    }
+
+    .social-links a:hover {
+        background-color: #2e7559;
+        color: #ffffff;
+    }
+
+    .bio-text {
+        flex-grow: 1;
+    }
+
+    .experience-card {
+        background-color: transparent;
+        border: 1px solid #fffff;
+        border-radius: 8px;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+    .experience-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        border-bottom: 1px solid #d2e3dc;
+        padding-bottom: 8px;
+        margin-bottom: 12px;
+    }
+
+    .exp-title {
+        font-weight: bold;
+        font-size: 1.1rem;
+        color: #1b382b;
+    }
+
+    /* 2. Center Piece: Company & Country Name */
+    .exp-center {
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: #1b382b;
+        flex: 1;
+        text-align: center;
+    }
+
+    .exp-meta {
+        color: #1b382b;
+        font-size: 1.1rem;
+        font-weight: bold;
+        text-align: right;
+    }
+
+    .top-social-links a {
+        text-decoration: none;
+        color: #2e7559;
+        font-size: 0.95rem;
+        font-weight: bold;
+        padding: 6px 12px;
+        background-color: #f4faf7; /* Original light green fill background */
+        border: 1px solid #d2e3dc;
+        border-radius: 4px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px; /* Adds space between the icon graphic and text name */
+        transition: all 0.2s ease;
+    }
+
+    /* Color flip trigger on mouse hover */
+    .top-social-links a:hover {
+        background-color: #2e7559;
+        color: #ffffff;
+    }
+
+    .item-block {
+        margin-bottom: 25px;
+        padding-bottom: 15px;
+        border-bottom: 1px dashed #d2e3dc;
+    }
+
+    .item-block:last-child {
+        border-bottom: none;
+    }
+
+        /* Forces paragraphs to spread evenly and align cleanly on both margins */
+    .justify-text {
+        text-align: justify;
+        text-justify: inter-word; /* Creates clean spacing between words */
+        line-height: 1.5; /* Adds nice breathing room for readability */
+    }
+
+    .justify-text-edu {
+        text-align: justify;
+        text-justify: inter-word; /* Creates clean spacing between words */
+        line-height: 1.15; /* Adds nice breathing room for readability */
+    }
+
+      /* Seamless link that stays on the same line and level as regular text */
+    .inline-paper-link {
+        text-decoration: underline; /* Standard textbook text underline */
+        color: #0000FF; /* Theme matching Sage Green text color */
+        font-size: inherit; /* <--- FORCES it to be the exact same size as the sentence */
+        font-weight: bold;
+        display: inline; /* <--- FORCES it to stay flat on the same line */
+        margin-left: 8px; /* Adds a clean space after your sentence */
+        transition: color 0.2s ease;
+    }
+
+    /* Changes color gently when you hover your mouse over it */
+    .inline-paper-link:hover {
+        color: #0000FF;
+        text-decoration: none; /* Removes underline on hover for a clean feel */
+    }
+
+    @media (max-width: 768px) {
+        .portfolio-container { padding: 25px; }
+        .bio-layout { flex-direction: column; align-items: center; }
+        .experience-header { flex-direction: column; gap: 4px; }
+        .exp-meta { text-align: left; font-size: 0.95rem; }
+    }
+
+    </style>
+</head>
+<body>
+
+<div class="portfolio-container">
+
+  <header class="main-header">
+       <div class="visiting-card">
+           <!-- Left Side: Profile Picture -->
+           <div class="card-left">
+               <img src="https://avatars.githubusercontent.com/u/17185028?v=4" alt="Profile Picture" class="profile-img">
+           </div>
+
+           <!-- Right Side: Name, Role, and Links -->
+           <div class="card-right">
+               <h1>Niraj Sitaula</h1>
+               <p class="professional-title">PhD in Information Science & Technology</p>
+
+               <div class="top-social-links">
+                 <a href="https://www.linkedin.com/in/sitaula-niraj/" target="_blank">LinkedIn</a>
+                 <a href="https://scholar.google.com/citations?hl=en&user=gne3-mkAAAAJ" target="_blank">Google Scholar</a>
+                 <a href="https://stackoverflow.com/users/5916727/niraj" target="_blank">Stack Overflow</a>
+                 <a href="https://github.com/nsitaula" target="_blank">GitHub</a>
+               </div>
+           </div>
+       </div>
+   </header>
+
+    <div class="tab-navigation">
+        <button class="tab-button active" data-target="bio">Bio</button>
+        <button class="tab-button" data-target="experience">Experience</button>
+        <button class="tab-button" data-target="research">Research</button>
+        <button class="tab-button" data-target="skills">Skills & Certificates</button>
+        <button class="tab-button" data-target="more">More</button>
+    </div>
+
+    <div class="tab-contents-container">
+
+        <!-- 1. Bio Tab -->
+        <div id="bio" class="tab-content" style="display: block;">
+            <h2 class="green-bar-title">About Me</h2>
+                <div class="bio-text">
+                    <p class="justify-text">Hello! My name is Niraj Sitaula.
+                      With more than 5 years of professional experience in technology industries and around 4 years of experience in assisting multiple interdisciplinary research projects, I am a researcher, data scientist, and software developer who is interested in building ethical and trustworthy AI.
+                      I have a diverse professional background, encompassing work in non-profit organizations, private companies, and academia across multiple countries.</p>
+                </div>
+            <h2 class="green-bar-title">Educational Background</h2>
+                <div class="item-block">
+                    <p><strong class="justify-text-edu">Ph.D. in Information Science & Technology </strong> — Syracuse University, USA (June 2026)</p>
+                    <p><strong class="justify-text-edu">MS in Computer Science </strong> — Syracuse University, USA (May 2017) </p>
+                    <p><strong class="justify-text-edu">BS in Electrical Engineering </strong> — St. Cloud State University, USA (Dec 2012) </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Experience Tab -->
+        <div id="experience" class="tab-content">
+            <h2 class="green-bar-title">Work Experience</h2>
+            <div class="experience-card">
+                <div class="experience-header">
+                    <div class="exp-title">Developer Advocate</div>
+                    <div class="exp-center">Medic Mobile, Nepal</div>
+                    <div class="exp-meta">May 2022 - Dec 2024</div>
+                </div>
+                <ul>
+                    <li><p class="justify-text">As a Developer Advocate at Medic Mobile, I supported the open-source Community Health Toolkit (CHT), technology focused on global health.
+                      I drove developer engagement by establishing feedback loops, launching the CHT applications developer survey, hosting webinars, and building the CHT Academy which is a learning management system for capacity building.
+                      By leveraging data science, I analyzed user patterns and survey responses to turn community insights into actionable product enhancements. I bridged the gap between CHT software architectures and on-the-ground creators by developing tutorials, documentation, and organizing monthly roundup calls.</p></li>
+                </ul>
+            </div>
+
+            <div class="experience-card">
+                <div class="experience-header">
+                    <div class="exp-title">Lead Software Engineer</div>
+                    <div class="exp-center">LIS Nepal Pvt. Ltd., Nepal </div>
+                    <div class="exp-meta">Nov 2021 - April 2022</div>
+                </div>
+                <ul>
+                    <li><p class = "justify-text">As a Lead Software Engineer in Business Intelligence at LIS Nepal, I optimized Python scripts for ETL pipelines and data warehousing.
+                      I promptly supported clients on technical issues related to SQL and python scripts. I also developed flowcharts for both technical and non-technical audiences.
+                      In addition, I delivered training sessions on data analytics and data warehousing to junior developers. </li>
+                </ul>
+            </div>
+            <div class="experience-card">
+                <div class="experience-header">
+                    <div class="exp-title">Research Assistant</div>
+                    <div class="exp-center">Syracuse University, USA </div>
+                    <div class="exp-meta">May 2017 - May 2022</div>
+                </div>
+                <ul>
+                    <li><p class = "justify-text">As a Research Assistant at Syracuse University, I worked in different portions of multiple interdisciplinary research projects. For one project, I developed an application with python Flask and MySQL to facilitate coding and data analysis. In another project, I applied network analysis and supervised machine learning models to detect fake news by assessing credibility of the news.
+                      Additionally, for another project that aimed to improve reasoning and intelligence analysis, I applied behavioral log analysis to understand users' interaction with the application and informed the team with insights for enhancement. I used data mining and data science methods on various types of data including text data, log data, and survey data to investigate relationship between user behavior and their reasoning.
+                      In these interdisciplinary projects, I collaborated with researchers from multiple departments across same and different universities in the US.
+                    </li>
+                </ul>
+            </div>
+            <div class="experience-card">
+                <div class="experience-header">
+                    <div class="exp-title">Java Developer</div>
+                    <div class="exp-center">Vastika Inc., USA </div>
+                    <div class="exp-meta">May 2013 - July 2015</div>
+                </div>
+                <ul>
+                    <li><p class = "justify-text">As a Java Developer in Vastika Inc., I worked in web applications with Java, RESTful web services, JDBC, and other technologies to integrate new modules and to update the existing applications.
+                      I performed unit testing and full testing of the application to ensure complete functionality.
+                      I also reviewed code from peers and created technical documentation as needed.  </p></li>
+                </ul>
+            </div>
+
+            <h2 class="green-bar-title">Relevant Experience</h2>
+            <div class="experience-card">
+                <div class="experience-header">
+                    <div class="exp-title">Practicum - MIDST (Modular Interactive Data Science Tool)</div>
+                    <div class="exp-center">Syracuse University, USA </div>
+                    <div class="exp-meta">Jan 2020 - May 2020</div>
+                </div>
+                <ul>
+                    <li><p class = "justify-text">In this practicum, as a doctoral student, I analyzed behavioral log data and conducted user interviews to understand user interactions with the data science tool. I gained hands-on experience conducting surveys and interviews, utilizing both quantitative and qualitative methods for analysis of the results.
+                      I also managed 7 graduate faculty assistants and coordinated with multiple research faculty members. </p></li>
+                </ul>
+            </div>
+            <div class="experience-card">
+                <div class="experience-header">
+                    <div class="exp-title">Practica - School of Information Studies</div>
+                    <div class="exp-center">Syracuse University, USA </div>
+                    <div class="exp-meta">Jan 2020 - May 2020</div>
+                </div>
+                <ul>
+                    <li><p class = "justify-text">During both research and teaching practica as a doctoral student, I coordinated with professors of data science to develop and update lectures on machine learning, deep learning, and data analytics.
+                      I also delivered lectures to both graduate and undergraduate students on topics of data science. In addition, I created tutorials and demonstrated new software and tools to the students.
+                      Furthermore, I graded students’ work and provided academic support both online and in-person to accelerate learning. </p></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 3. Research Tab -->
+        <div id="research" class="tab-content">
+          <h2 class="green-bar-title">Publications</h2>
+
+          <p style="margin: 5px 0 0 0; line-height: 1.6; color: #372D2D;">
+              <div class="experience-header">
+                    <div class="exp-title">Book Chapter</div>
+                </div>
+          </p>
+          <div class="item-block">
+                <p style="margin: 5px 0 0 0; line-height: 1.6; color: #372D2D;">
+                    <strong>Sitaula, N.</strong>, Mohan, C. K., Grygiel, J., Zhou, X., & Zafarani, R. (2020). Credibility-Based Fake News Detection. In K. Shu, S. Wang, D. Lee, & H. Liu (Eds.),
+                    <em style="color: #3B1B1C;">Disinformation, Misinformation, and Fake News in Social Media</em>(pp. 163–182). Springer International Publishing.
+                    <a href="https://arxiv.org/pdf/1911.00643" target="_blank" class="inline-paper-link">[Read pdf from arXiv.org]</a>
+                </p>
+            </div>
+
+          <p style="margin: 5px 0 0 0; line-height: 1.6; color: #372D2D;">
+              <div class="experience-header">
+                    <div class="exp-title">Refereed Conference Proceedings</div>
+                </div>
+          </p>
+            <div class="item-block">
+                <p style="margin: 5px 0 0 0; line-height: 1.6; color: #372D2D;">
+                    Crowston, K., Saltz, J., <strong>Sitaula, N.</strong>, & Hegde, Y. (2021). Evaluating MIDST, A System to Support Stigmergic Team Coordination.
+                    <em style="color: #3B1B1C;">Proceedings of the ACM on Human-Computer Interaction, 5</em>(CSCW1), Article 36.
+                    <a href="https://dl.acm.org/doi/pdf/10.1145/3449110" target="_blank" class="inline-paper-link">[Read pdf from ACM.org]</a>
+                </p>
+            </div>
+            <!-- PAPER 2-->
+            <div class="item-block">
+                <p style="margin: 5px 0 0 0; line-height: 1.6; color: #372D2D;">
+                    Chew F., Egan B., Mohan C., Jiang R., <strong>Sitaula N.</strong> (2019). TV program-ad genre congruence and ad avoidance: Applying neural networks to assess effects.
+                    In <em style="color: #3B1B1C;">Broadcast Education Association.</em>
+                </p>
+            </div>
+            <!-- PAPER 3-->
+            <div class="item-block">
+                <p style="margin: 5px 0 0 0; line-height: 1.6; color: #372D2D;">
+                    Boichak, O., Canzonetta, J., <strong>Sitaula, N.</strong>, McKernan, B., Taylor, S.M., Rossini, P.G., Clegg, B.A., Kenski, K., Martey, R.M., McCracken, N., Østerlund, C.S., Myers, R., Folkestad, J.E., & Stromer-Galley, J. (2019). Beyond the Medium: Rethinking Information Literacy through Crowdsourced Analysis. In
+                    <em style="color: #3B1B1C;">Proceedings of the 52nd Hawaii International Conference on System Sciences.</em>
+                    <a href="https://scholarspace.manoa.hawaii.edu/server/api/core/bitstreams/40f77e6a-68c1-4c1c-9c16-a61aa4726ae9/content" target="_blank" class="inline-paper-link">[Read pdf from hawaii.edu]</a>
+                </p>
+            </div>
+
+            <!-- PAPER 4-->
+            <div class="item-block">
+                <p style="margin: 5px 0 0 0; line-height: 1.6; color: #372D2D;">
+                    Xiao, L., & <strong>Sitaula, N. </strong> (2018). Sentiments in Wikipedia Articles for Deletion Discussions. In
+                    <em style="color: #3B1B1C;">International Conference on Information</em> (pp. 81-86). Springer, Cham.
+                </p>
+            </div>
+
+          <h2 class="green-bar-title">Dissertation</h2>
+          <div class="item-block">
+              <strong><p class = "justify-text">A Comparative Study of Attitudes Towards Trust in AI and Ethics in AI between Indian International Students and American Students in the US universities. </strong></p>
+              <ul>
+                <li><p class = "justify-text">For my doctoral dissertation at Syracuse University, I investigated attitudes toward trust in Artificial Intelligence (AI) and ethics in AI between Indian international students and American students in the US universities.</p>
+                  <p class = "justify-text">With 447 final responses from 97 US universities, I compared attitude towards trust in AI via trust constructs: dispositional, functionality, and institutional trust. Likewise, I compared attitude towards ethics in AI using three constructs: the importance of ethical principles for AI, attitude towards transparency in AI, and attitude towards accountability in AI. I viewed the differences in trust in AI and ethics in AI between the two groups of students using three lenses: cultural dimensions, AI optimism, and acculturation. </p>
+                  <p class = "justify-text">The statistical data analysis indicated significant differences between the two groups of students which draws attention to the need to rethink the methods and content for teaching ethics in AI in a classroom with international students. </p>
+                  <p class = "justify-text"> You can find full dissertation openly available at <a href="https://surface.syr.edu/etd/2364/" target="_blank" class="inline-paper-link"><i class="fa-solid fa-book"></i>Syracuse University's SURFACE site.</a></p>
+                </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 4. More Tab -->
+        <div id="skills" class="tab-content">
+            <h2 class="green-bar-title">Skills</h2>
+            <p style="margin: 5px 0 0 0; line-height: 1.6; color: #372D2D;">
+              <div class="experience-header">
+                    <div class="exp-title">Programming</div>
+                </div>
+            </p>
+            <p class = "justify-text">My journey to programming began with standard MS-DOS commands during my school days.
+              I was exposed to programming languages in depth during my courses in college, which gave me a comprehensive understanding of both the hardware and software components of computing.
+              The knowledge of core foundational programming languages Assembly and C laid the groundwork for me to easily adapt to more high-level modern languages like Python, Java, R, SQL, and JavaScript, all of which I have used in my work and research.</p>
+
+              <p style="margin: 5px 0 0 0; line-height: 1.6; color: #372D2D;">
+                <div class="experience-header">
+                      <div class="exp-title">Software</div>
+                  </div>
+              </p>
+              <p class = "justify-text">I am proficient across the Microsoft Office suite, including Word, Excel, and PowerPoint.
+                For version control and collaborative development, I use Git to track changes and review code from peers. I have used Qualtrics and Google Forms for designing surveys and data collection.
+                For statistical analysis, machine learning, and data science, I have extensively used RStudio for R workflows and Jupyter Notebooks for Python scripts.</p>
+            <h2 class="green-bar-title">Certifications</h2>
+            <p class = "justify-text">I try to keep up with technologies and learn new courses whenever I can. Below are list of certificates acquired from taking LinkedIn Learning courses:</p>
+            <div class="item-block">
+              <ul>
+                <li>
+                    <strong>Foundations of Responsible AI</strong> — LinkedIn Learning. (Issued Nov 2025).
+                    <a href="https://www.linkedin.com/learning/certificates/cb6f234eeedaff1e1279eef999513ce4a7232a2f338b9382f5d094e2e7e2511a/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3BTmQMAsRPSSCxjmw8r4pp9w%3D%3D" target="_blank" class="inline-paper-link"> [Verify Credential]</a>
+                </li>
+                <li>
+                    <strong>Prompting ChatGPT with Multimodal Techniques</strong> — LinkedIn Learning. (Issued Mar 2025).
+                    <a href="https://www.linkedin.com/learning/certificates/fc8984c5b52ac664ac1961cb26a08d4dac66ea21fbd6613a224b1b51ed7d4981/?trk=share_certificate&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3BTmQMAsRPSSCxjmw8r4pp9w%3D%3D" target="_blank" class="inline-paper-link"> [Verify Credential]</a>
+                </li>
+                <li>
+                    <strong>Prompt Engineering: How to Talk to the AIs</strong> — LinkedIn Learning. (Issued Mar 2025).
+                    <a href="https://www.linkedin.com/learning/certificates/2f1f71408f7a98821663f8a4e323b67e1e2f480a35674c56d6eec67fcb0b1166/?trk=share_certificate&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3BTmQMAsRPSSCxjmw8r4pp9w%3D%3D" target="_blank" class="inline-paper-link"> [Verify Credential]</a>
+                </li>
+                <li>
+                    <strong>Generative AI vs. Traditional AI</strong> — LinkedIn Learning. (Issued Mar 2025).
+                    <a href="https://www.linkedin.com/learning/certificates/89c8217099715ffce0c227e21b38839b425a88f4566ce54be2e76b1dea1b63f2/?trk=share_certificate&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3BTmQMAsRPSSCxjmw8r4pp9w%3D%3D" target="_blank" class="inline-paper-link"> [Verify Credential]</a>
+                </li>
+                <li>
+                    <strong>Hands-On AI: Building LLM-Powered Apps</strong> — LinkedIn Learning. (Issued Mar 2025).
+                    <a href="https://www.linkedin.com/learning/certificates/44949b3df07d2dd28ac7369263bd3cc4f3fa977db51f437e6efc934b2bccdcb6/?trk=share_certificate&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3BTmQMAsRPSSCxjmw8r4pp9w%3D%3D" target="_blank" class="inline-paper-link"> [Verify Credential]</a>
+                </li>
+                <li>
+                    <strong>What Is Generative AI?</strong> — LinkedIn Learning. (Issued Mar 2025).
+                    <a href="https://www.linkedin.com/learning/certificates/9ec5f4f9a664d33bd0c5e98f7b8b1314be7a9aecfcfd436540bc2324bc10d3fb/?trk=share_certificate&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3BTmQMAsRPSSCxjmw8r4pp9w%3D%3D" target="_blank" class="inline-paper-link"> [Verify Credential]</a>
+                </li>
+                <li>
+                    <strong>Python Essential Training</strong> — LinkedIn Learning. (Issued Jan 2025).
+                    <a href="https://www.linkedin.com/learning/certificates/2f8a6f3381146ac240d56f1e913a183d8ab96a30da51fac375f648aa84bfa330/?trk=share_certificate&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3BTmQMAsRPSSCxjmw8r4pp9w%3D%3D" target="_blank" class="inline-paper-link"> [Verify Credential]</a>
+                </li>
+                <li>
+                    <strong>Causal Inference with Survey Data</strong> — LinkedIn Learning. (Issued Dec 2024).
+                    <a href="https://www.linkedin.com/learning/certificates/e7e5e2b481f4a9970e3cd2c7f4ab2ee5d190edb6c7992d72b16eb4f4ffe56e9a/?trk=share_certificate&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3BTmQMAsRPSSCxjmw8r4pp9w%3D%3D" target="_blank" class="inline-paper-link"> [Verify Credential]</a>
+                </li>
+                <li>
+                    <strong>Build Your Analytical Skills with Statistical Analysis</strong> — LinkedIn Learning. (Issued Dec 2024).
+                    <a href="https://www.linkedin.com/learning/certificates/794a29518c43c074b7fe13b42a762a56aa7cb2d93b648d1a8c0d5fb9ed63251f/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3BTmQMAsRPSSCxjmw8r4pp9w%3D%3D" target="_blank" class="inline-paper-link"> [Verify Credential]</a>
+                </li>
+                <li>
+                    <strong>Applied Machine Learning: Foundations</strong> — LinkedIn Learning. (Issued Jun 2021).
+                    <a href="https://www.linkedin.com/learning/certificates/7549c4d56e7b77e3a87f566c47c692d9503b616626a89595fc9802c70181820f/?trk=share_certificate&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3BTmQMAsRPSSCxjmw8r4pp9w%3D%3D" target="_blank" class="inline-paper-link"> [Verify Credential]</a>
+                </li>
+                <li>
+                    <strong>Deep Learning Foundations: Natural Language Processing with TensorFlow</strong> — LinkedIn Learning. (Issued Jun 2021).
+                    <a href="https://www.linkedin.com/learning/certificates/040eed6dc42ddaed82268460a2c91a535894fd9ef637425823db88c28a85bd50/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3BTmQMAsRPSSCxjmw8r4pp9w%3D%3D" target="_blank" class="inline-paper-link"> [Verify Credential]</a>
+                </li>
+                <li>
+                    <strong>Master Python for Data Science</strong> — LinkedIn Learning. (Issued Mar 2020).
+                    <a href="https://www.linkedin.com/learning/certificates/63f07feca6faa24d34b26048b2fe540cfa9be982ed8a4ed9773e6350ec0201bb/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3BTmQMAsRPSSCxjmw8r4pp9w%3D%3D" target="_blank" class="inline-paper-link"> [Verify Credential]</a>
+                </li>
+              </ul>
+            </div>
+        </div>
+
+        <!-- 5. More Tab -->
+        <div id="more" class="tab-content">
+            <h2 class="green-bar-title">Honors and Awards</h2>
+            <ul>
+                <li>Awarded first place in open paper competition in Broadcast Education Association (BEA) 2019.s</li>
+                <li>Received Denise M. McGuire Student Research Award 2012 from St. Cloud State University.</li>
+            </ul>
+
+            <h2 class="green-bar-title">Contributions</h2>
+            <ul>
+                <li>
+                  <p class="justify-text">I sometimes engage with the developer community by providing technical support to other learners on <a href="https://stackoverflow.com/users/5916727/niraj" target="_blank" class="inline-paper-link"> Stack Overflow</a>.
+                  Beyond Stack Overflow, I got an opportunity to contribute to the open-source Community Health Toolkit (CHT), a digital technology framework focused on global health impact, as a Developer Advocate in Medic Mobile.
+                  You can still explore some of my blog posts <a href="https://medic.org/stories/author/nsitaula/" target="_blank" class="inline-paper-link"> [link here]</a> for insights based on developer surveys.
+                  </p>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const buttons = document.querySelectorAll(".tab-button");
+        const contents = document.querySelectorAll(".tab-content");
+        buttons.forEach(function(btn) {
+            btn.addEventListener("click", function() {
+                buttons.forEach(b => b.classList.remove("active"));
+                contents.forEach(c => c.style.display = "none");
+                this.classList.add("active");
+                const targetId = this.getAttribute("data-target");
+                document.getElementById(targetId).style.display = "block";
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
